@@ -11,17 +11,17 @@
    
     width: 100%;
     height: 100vh;
-    background-color: red;
+    background-color: darkgray;
     display: flex;
     justify-content: center;
     align-items: center;
     
 }
 .calender{
-    background-color: black;
-    color: lightblue;
-    width:450px ;
-    height:520px ;
+    background-color: white;
+    color: rgb(0, 0, 0);
+    width:750px ;
+    height:620px ;
     border-radius: 10px;
     box-shadow: 4px 4px 8px rgba(red, green, blue, alpha);
 
@@ -29,21 +29,24 @@
 .month{
     width: 100%;
     height: 120px;
-    background-color: aqua;
+    background-color: yellow;
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: center;
-    text-align: center;
+    text-align: left;
     border-radius: 10px 10px 0 0;
 }
 .month h1{
 font-size: 30px;
 font-weight: 300;
 text-transform: uppercase;
+text-align: left;
 
 }
 .month p{
     font-size: 16px;
+    text-align: left;
+    align-items: center;
 }
 .weekendays{
     width: 100%;
@@ -84,3 +87,10 @@ text-transform: uppercase;
     cursor: pointer;
 }
 .today{background-color: lightblue;}
+
+.date{
+    text-align: center;
+    align-items: center;
+    display: flex;justify-content: left;
+
+}
