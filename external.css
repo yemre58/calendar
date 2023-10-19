@@ -20,10 +20,11 @@
 .calender{
     background-color: white;
     color: rgb(0, 0, 0);
-    width:750px ;
-    height:620px ;
+    width:650px ;
+    height:520px ;
     border-radius: 10px;
     box-shadow: 4px 4px 8px rgba(red, green, blue, alpha);
+    padding: 20px;
 
 }
 .month{
@@ -63,7 +64,18 @@ text-align: left;
     justify-content: center;
 }
 
+.calender ul{
+    display: flex;
+    list-style-type: none;
+    flex-wrap: wrap;
+    text-align:center;
 
+
+}
+.calender .days{
+    margin-bottom: 20px;
+
+}
 .days{
     background-color: green;
     width: 100%;
@@ -77,11 +89,67 @@ text-align: left;
     
     
 }
-.days ul{
-    
-        list-style-type: none;    
-    
+
+
+.days ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 15px;
+    padding: 15px;
 }
+
+.days li {
+    z-index: 1;
+    cursor: pointer;
+    width: calc(100% / 7); /* 7 sütunlu yapmak için genişlik hesaplaması */
+    font-weight: 500;
+    position: relative;
+    padding: 5px;
+    margin: 5px; /* Li öğeleri arasındaki boşluğu ayarlar */
+}
+
+.days li::before {
+    position: absolute;
+    content: "";
+    height: 40px;
+    width: 40px;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.days div {
+    font-size: 14px;
+    margin: 3px;
+    width: 58px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.days div:hover:not(.empty) {
+    border: 2px solid gray;
+    cursor: pointer;
+}
+
+.today {
+    background-color: lightblue;
+}
+
+.date {
+    text-align: center;
+    align-items: center;
+    display: flex;
+    justify-content: left;
+}
+
+
+
 .days div{
     font-size: 14px;
     margin: 3px;
