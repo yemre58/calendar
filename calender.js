@@ -1,16 +1,8 @@
 
 
-
-
-
-
-
-
 const ulElement=document.createElement('ul');// const ile ulElement adında bir değişken oluşturduk ve document de de creat element il ul diy ebir etiket oluşturup içine atadık
 
 const days= document.querySelector('.days');//dasy adında bir değişken tanımladık ve documentin  içeirndeki days a atadık
-
-
 
 
 
@@ -34,7 +26,9 @@ const backwarButton=document.createElement('span');// const  ile backwar button 
 backwarButton.textContent='geri';// textine geri yazılır 
 backwarButton.classList.add('navigation-button','backwarButton');// calss list add ile iki adet sınıf eklenir 
 
-
+// forwarButton.id='prev'; id eklemek için kullanılır
+//backwarButton.id='prev';
+//  const buttonId=document.getElementById('.prev');
 
 
 
@@ -45,13 +39,17 @@ const months= [// months adında bir dizi oluşturuldu ve içerisine aylar eklen
 let currentMonthsIndex=0;// let ile currentMonthIndex değişkeni tanımlandı ve değeri 0 olarak verildi
 
 function updateMonth(){// updateMont adında bir function oluşturuldu -ay güncelle
+     
     const monthsHeader=document.querySelector('.date h1');//monthsHeader adında bir değişken oluşturdu ve document in date h1  etieketine atandı
+   if(monthsHeader){
     monthsHeader.textContent=months[currentMonthsIndex];//monthheader değişkenin (ay başlığı) textine months dizisindeki içerisnde bulunduğu ay yazılır
+                    }
 }
 
 
 forwarButton.addEventListener('click',()=>{// fowarButtona addEventListener ile dinleme olayı ekleniyor b
    
+    
     if(currentMonthsIndex<months.length -1){//eğer currenentMonstIndex değişkeni months -1 den küçükse ayı bir artırırı -1 dizilerde 0 bir oldugu iççin
         currentMonthsIndex++;// currentMonthIndex i bir arttır
     }
@@ -59,11 +57,17 @@ forwarButton.addEventListener('click',()=>{// fowarButtona addEventListener ile 
             currentMonthsIndex=0;
         }
         updateMonth();//ayı güncellee fonkdiyonunu çagırarak yeni ayı yazdırır
+        currMonth=currentMonthsIndex;
+        renderCalendar();
+       
+  
     
 });
 
 backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı değiştirmek için dinleme olayı eklenmiştir
      
+    
+    
     if(currentMonthsIndex>0){//currenthMOnthsIndex 0 dan büyükse eğer 
         currentMonthsIndex--;//bir azalt 
     }
@@ -71,6 +75,10 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
         currentMonthsIndex=months.length -1;
     }
         updateMonth();//updateMonths functionu  çağır
+        currMonth = currentMonthsIndex;
+    renderCalendar();
+    
+   
       
 
 });
@@ -82,9 +90,19 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
     let date=new Date();
     let currYear=date.getFullYear();
     let currMonth=date.getMonth();
+    let currdays=date.getDate();
+    let previousMonth = null; 
     const renderCalendar=()=>{
-        currentDate.innerText=`${currMonth} ${months[currentMonthsIndex]} ${currYear} `;
-    }
+        if (currdays && currMonth === currentMonthsIndex) {
+             currentDate.innerText = `${currMonth  +1 } ${months[currentMonthsIndex]} ${currYear}`;
+             
+            
+        } else {
+           currentDate.innerHTML = `${currdays} ${months[currMonth]} ${currYear}`;
+          
+        }
+        
+       
+     } 
     renderCalendar();
-    
-    
+  
