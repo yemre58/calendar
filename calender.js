@@ -61,10 +61,10 @@ forwarButton.addEventListener('click',()=>{// fowarButtona addEventListener ile 
         updateMonth();//ayı güncellee fonkdiyonunu çagırarak yeni ayı yazdırır
         currMonth=currentMonthsIndex;
         renderCalendar();
-       
-  
-    
-});
+        
+     
+        
+    });
 
 backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı değiştirmek için dinleme olayı eklenmiştir
      
@@ -80,9 +80,9 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
         updateMonth();//updateMonths functionu  çağır
         currMonth = currentMonthsIndex;
     renderCalendar();
-    
+
+
    
-      
 
 });
 
@@ -106,14 +106,21 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
           
         }
         
-       
+        
+        
      } 
     renderCalendar();
- const body=document.body;
-    if (currdays === 1) {
-        body.style.setProperty('--bg-color', 'var(--bg-color-1)');
-        body.style.setProperty('--text-color', 'var(--text-color-1)');
-    } else if (currdays === 2) {
-        body.style.setProperty('--bg-color', 'var(--bg-color-2)');
-        body.style.setProperty('--text-color', 'var(--text-color-2)');
-    }                               
+    
+    
+    const listItems = document.querySelectorAll('.days ul li');
+    
+    // Eski "today" sınıfını temizle
+    listItems.forEach(item => {
+        item.classList.remove('today');
+       
+    });
+    
+    // Yeni "today" sınıfını ekleyin
+    listItems[currdays - 1].classList.add('today');
+    
+// sonrası
