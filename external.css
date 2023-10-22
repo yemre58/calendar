@@ -16,7 +16,7 @@
 
 .calender {
     background-color: white;
-    color: rgb(0, 0, 0);
+    color: rgb(177, 4, 4);
     width: 650px;
     height: 500px;
     border-radius: 10px;
@@ -27,37 +27,29 @@
 .month {
     width: 100%;
     height: 120px;
-    background-color: yellow;
+    background-color: white;
     display: flex;
-    justify-content: left;
+    justify-content: center;
     align-items: center;
     text-align: left;
-    border-radius: 10px 10px 0 0;
+    
 }
 
-.month h1 {
-    font-size: 24px; /* Yazım hatası düzeltildi */
-    font-weight: 500; /* Yazım hatası düzeltildi */
-    text-transform: uppercase;
-    text-align: left;
-}
 
-.month p {
-    font-size: 16px;
-    text-align: left;
-    align-items: center;
-}
+
+
 
 .weekendays {
     align-items: center;
     justify-content: center;
     text-align: center;
-    padding: 10px;
+    
     display: flex;
+    color: red;
 }
 
 .weekendays div {
-    font-size: 16px;
+    font-size: 20px;
     font-weight: bold;
     letter-spacing: 1px;
     width: 100%;
@@ -66,45 +58,28 @@
     justify-content: center;
 }
 
-.calender ul {
-    display: flex;
-    list-style-type: none;
-    flex-wrap: wrap;
-    text-align: center;
-}
 
-.calender .days {
-    margin-bottom: 20px;
-}
 
-.days {
-    background-color: white;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding: 2px;
-    align-items: center;
-    list-style-type: none;
-}
+
+
 
 .days ul {
     list-style-type: none;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 15px;
-    padding: 15px;
+    margin: 2px;
 }
-
 .days li {
     z-index: 1;
     cursor: pointer;
     width: calc(100% / 7);
     font-weight: 500;
     position: relative;
-    padding: 5px;
-    margin: 5px;
+    padding: 20px;
+    margin: 0px;
+    text-align: center;
+    color: rgb(24, 6, 6);
 }
 
 .days li::before {
@@ -136,37 +111,53 @@
 
 .today {
     background-color: lightblue;
-}
-
-.date {
     text-align: center;
-    align-items: center;
-    display: flex;
-    justify-content: left;
 }
 
-.days div {
-    font-size: 14px;
-    margin: 3px;
-    width: 58px;
-    height: 50px;
+.weekendays {
+    display: flex; /* Ekledik: Günleri yatayda hizalamak için flex kullanın */
+    justify-content: center; /* Günleri yatayda merkezlemek için kullanın */
+    text-align: center;
+}
+
+.weekendays div {
+    font-size: 20px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    width: 100%;
     display: flex;
+    align-items: center;
     justify-content: center;
-    align-items: center;
+    
 }
 
-.days div:hover:not(.empty) {
-    border: 2px solid gray;
-    cursor: pointer;
-}
-
-.today {
-    background-color: lightblue;
-}
-
-.date {
+.days ul li.today {
+    color: black;
+    background-color: rgb(242, 72, 72);
     text-align: center;
-    align-items: center;
-    display: flex;
-    justify-content: left;
 }
+
+#back {
+    position: absolute;
+    top: 150px;
+    right: 680px;
+    color: aqua;
+    font-size: 50px;
+    margin: 10px;
+    padding: 10px;
+}
+
+#fowar {
+    position: absolute;
+    top: 150px;
+    right: 60px;
+    color: aqua;
+    font-size: 50px;
+    margin: 10px;
+    padding: 10px;
+}
+
+
+
+
+

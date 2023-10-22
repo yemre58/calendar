@@ -6,8 +6,10 @@ const days= document.querySelector('.days');//dasy adında bir değişken tanım
 
 
 
-for(let i=1;i<=31;i++){//i değişkeni oluştrduk ve 1 den 31 e kadar for döngüsü ile dolaştırdık
+for(let i=1;i<31;i++){//i değişkeni oluştrduk ve 1 den 31 e kadar for döngüsü ile dolaştırdık
+   
     const listItem=document.createElement('li');//const ile listItem adında bir değişken oluşturduk ve documentte create element il ebir li etiketi oluşturup içerisie atadık 
+   
     listItem.textContent=`${i}`;//listItem değişkeni  yani li textConten özelliği ile içerisine for ile oluturulan  atanır 
     ulElement.appendChild(listItem);// ul nin içeirsine li etiketi eklemeyi sağlar
 }
@@ -15,21 +17,18 @@ days.appendChild(ulElement);//days öğesine ulElement değişkenine atanmış u
 if(!days.querySelector('ul')){//eğer days ın içerisinde ul etiketi yokmu diye bakar yoksa aşağıdaki kodu çalıştırı
     days.appendChild(ulElement);//dasy ın içerisne appendChil ile ul ekler
 }
-const daysList=document.querySelector('.days ul'); //const ile daysList adında bir değişken oluşturuluyor ve document tin days ul sine atanıyor
+
+const daysList=document.querySelector('.date '); //const ile daysList adında bir değişken oluşturuluyor ve document tin days ul sine atanıyor
 
 const   forwarButton=document.createElement('span');//fowarButton adlı bir değişken oluşturulur ve documentte create element ile bit sspan etiketi oluşturularak içerisine atılır
-forwarButton.textContent='ileri';//fowar buttonun textine ileri yazılır
+forwarButton.textContent='>';//fowar buttonun textine ileri yazılır
 forwarButton.classList.add('navigations','forwarButton');//fowar buttona calss list add(eklemek)ile iki adet sınıf eklenir 
-
+forwarButton.id='fowar';
 
 const backwarButton=document.createElement('span');// const  ile backwar button diye bir değişken oluşturuur ve document te de create elementile span etike oluşturulur ve içerisine atanır
-backwarButton.textContent='geri';// textine geri yazılır 
+backwarButton.textContent='<';// textine geri yazılır 
 backwarButton.classList.add('navigations','backwarButton');// calss list add ile iki adet sınıf eklenir 
-
-forwarButton.id='prev';//id eklemek için kullanılır
-backwarButton.id='prev';
- const buttonId=document.getElementById('.prev');
-
+backwarButton.id = 'back';
 
 
 const months= [// months adında bir dizi oluşturuldu ve içerisine aylar eklendi
@@ -61,7 +60,7 @@ forwarButton.addEventListener('click',()=>{// fowarButtona addEventListener ile 
         updateMonth();//ayı güncellee fonkdiyonunu çagırarak yeni ayı yazdırır
         currMonth=currentMonthsIndex;
         renderCalendar();
-        
+      
      
         
     });
@@ -80,7 +79,7 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
         updateMonth();//updateMonths functionu  çağır
         currMonth = currentMonthsIndex;
     renderCalendar();
-
+    
 
    
 
@@ -112,15 +111,32 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
     renderCalendar();
     
     
+
     const listItems = document.querySelectorAll('.days ul li');
     
+    listItems.forEach((item, index) => {
+        item.id = `day${index + 1}`;
+    });
     // Eski "today" sınıfını temizle
     listItems.forEach(item => {
         item.classList.remove('today');
        
     });
-    
+    const monthClass = months[currentMonthsIndex].toLowerCase();
+  
     // Yeni "today" sınıfını ekleyin
     listItems[currdays - 1].classList.add('today');
     
 // sonrası
+// Mouse ile üzerine gelindiğinde rengi değiştirmek için liste öğelerine event dinleyiciler ekleyin
+listItems.forEach(item => {
+    item.addEventListener("mouseover", function() {
+        // Mouse nesnenin üzerine gelince rengi değiştir
+        item.style.backgroundColor = "red";
+    });
+
+    item.addEventListener("mouseout", function() {
+        // Mouse nesnenin üzerinden çıkınca rengi eski haline getir
+        item.style.backgroundColor = ""; // Boş bir değer vererek varsayılan rengi geri alabilirsiniz
+    });
+});
