@@ -20,7 +20,7 @@
     width: 650px;
     height: 500px;
     border-radius: 10px;
-    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); /* Renk değerlerini düzeltildi */
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.2); 
     padding: 20px;
 }
 
@@ -68,7 +68,7 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 2px;
+    margin: 20x;
 }
 .days li {
     z-index: 1;
@@ -115,8 +115,8 @@
 }
 
 .weekendays {
-    display: flex; /* Ekledik: Günleri yatayda hizalamak için flex kullanın */
-    justify-content: center; /* Günleri yatayda merkezlemek için kullanın */
+    display: flex; 
+    justify-content: center; 
     text-align: center;
 }
 
@@ -137,27 +137,61 @@
     text-align: center;
 }
 
-#back {
-    position: absolute;
-    top: 150px;
-    right: 680px;
-    color: aqua;
-    font-size: 50px;
-    margin: 10px;
-    padding: 10px;
+.date {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    padding:35px;
+    margin: 15px;
 }
 
-#fowar {
-    position: absolute;
-    top: 150px;
-    right: 60px;
-    color: aqua;
-    font-size: 50px;
-    margin: 10px;
-    padding: 10px;
+.navigations {
+    cursor: pointer;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: right;
+    align-items: center;
 }
 
+.backwarButton {
+    color: red;
+    text-align: right;
+    padding: 0px;
+    margin-left: 10px; /* Araya boşluk eklenir */
+}
 
+.forwarButton {
+    color: red;
+    text-align: right;
+    margin-right: 10px; /* Araya boşluk eklenir */
+}
 
+.backwarButton:hover {
+    background-color: #eb2f2f;
+    color: white;
+}
 
+.forwarButton:hover {
+    background-color: #eb2f2f;
+    color: white;
+}
 
+h1 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.left-arrow,
+.right-arrow {
+    font-size: 24px;
+    color: #0077cc;
+}
+#fowar{
+    margin-right: 0px;
+    margin-left: 10px  ;
+}
+#back{
+    margin-left: 100px  ;
+    margin-right: 0px ;
+}
