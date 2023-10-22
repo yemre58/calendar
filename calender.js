@@ -19,16 +19,16 @@ const daysList=document.querySelector('.days ul'); //const ile daysList adında 
 
 const   forwarButton=document.createElement('span');//fowarButton adlı bir değişken oluşturulur ve documentte create element ile bit sspan etiketi oluşturularak içerisine atılır
 forwarButton.textContent='ileri';//fowar buttonun textine ileri yazılır
-forwarButton.classList.add('navigation-button','forwarButton');//fowar buttona calss list add(eklemek)ile iki adet sınıf eklenir 
+forwarButton.classList.add('navigations','forwarButton');//fowar buttona calss list add(eklemek)ile iki adet sınıf eklenir 
 
 
 const backwarButton=document.createElement('span');// const  ile backwar button diye bir değişken oluşturuur ve document te de create elementile span etike oluşturulur ve içerisine atanır
 backwarButton.textContent='geri';// textine geri yazılır 
-backwarButton.classList.add('navigation-button','backwarButton');// calss list add ile iki adet sınıf eklenir 
+backwarButton.classList.add('navigations','backwarButton');// calss list add ile iki adet sınıf eklenir 
 
-// forwarButton.id='prev'; id eklemek için kullanılır
-//backwarButton.id='prev';
-//  const buttonId=document.getElementById('.prev');
+forwarButton.id='prev';//id eklemek için kullanılır
+backwarButton.id='prev';
+ const buttonId=document.getElementById('.prev');
 
 
 
@@ -52,9 +52,11 @@ forwarButton.addEventListener('click',()=>{// fowarButtona addEventListener ile 
     
     if(currentMonthsIndex<months.length -1){//eğer currenentMonstIndex değişkeni months -1 den küçükse ayı bir artırırı -1 dizilerde 0 bir oldugu iççin
         currentMonthsIndex++;// currentMonthIndex i bir arttır
+
     }
         else{
             currentMonthsIndex=0;
+            currYear++;
         }
         updateMonth();//ayı güncellee fonkdiyonunu çagırarak yeni ayı yazdırır
         currMonth=currentMonthsIndex;
@@ -73,6 +75,7 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
     }
     else{
         currentMonthsIndex=months.length -1;
+        currYear--;
     }
         updateMonth();//updateMonths functionu  çağır
         currMonth = currentMonthsIndex;
@@ -93,8 +96,9 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
     let currdays=date.getDate();
     let previousMonth = null; 
     const renderCalendar=()=>{
+        
         if (currdays && currMonth === currentMonthsIndex) {
-             currentDate.innerText = `${currMonth  +1 } ${months[currentMonthsIndex]} ${currYear}`;
+             currentDate.innerText = `${currMonth  +1   } ${months[currentMonthsIndex]} ${currYear}`;
              
             
         } else {
@@ -105,4 +109,11 @@ backwarButton.addEventListener('click',()=>{// butona tıklandığında ayı de�
        
      } 
     renderCalendar();
-  
+ const body=document.body;
+    if (currdays === 1) {
+        body.style.setProperty('--bg-color', 'var(--bg-color-1)');
+        body.style.setProperty('--text-color', 'var(--text-color-1)');
+    } else if (currdays === 2) {
+        body.style.setProperty('--bg-color', 'var(--bg-color-2)');
+        body.style.setProperty('--text-color', 'var(--text-color-2)');
+    }                               
