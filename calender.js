@@ -1,165 +1,167 @@
 
 
-    const ulElement=document.createElement('ul');
+const ulElement=document.createElement('ul');
 
-    const days= document.querySelector('.days');
-
-
+const days= document.querySelector('.days');
 
 
+
+
+days.appendChild(ulElement);
+if(!days.querySelector('ul')){
     days.appendChild(ulElement);
-    if(!days.querySelector('ul')){
-        days.appendChild(ulElement);
-    }
+}
 
-    const daysList=document.querySelector('.date '); 
+const daysList=document.querySelector('.date '); 
 
-    const   forwarButton=document.createElement('span');
-    forwarButton.textContent='>';
-    forwarButton.classList.add('navigations','forwarButton'); 
-    forwarButton.id='fowar';
+const   forwarButton=document.createElement('span');
+forwarButton.textContent='>';
+forwarButton.classList.add('navigations','forwarButton'); 
+forwarButton.id='fowar';
 
-    const backwarButton=document.createElement('span');
-    backwarButton.textContent='<'; 
-    backwarButton.classList.add('navigations','backwarButton'); 
-    backwarButton.id = 'back';
+const backwarButton=document.createElement('span');
+backwarButton.textContent='<'; 
+backwarButton.classList.add('navigations','backwarButton'); 
+backwarButton.id = 'back';
 
 
-    const months= [
-            'Ocak','Şubat','Mart','Nisan','Mayıs','HAziran','Temmuz','Ağustos','Eylül','Ekim','Kasım' ,'Aralık'    
-        ];
-
-    let currentMonthsIndex=0;
-
-    function updateMonth(){
-        
-        const monthsHeader=document.querySelector('.date h1');
-    if(monthsHeader){
-        monthsHeader.textContent=months[currentMonthsIndex];
-                        }
-    }
+const months= [
+        'Ocak','Şubat','Mart','Nisan','Mayıs','HAziran','Temmuz','Ağustos','Eylül','Ekim','Kasım' ,'Aralık'    
+    ];
 
 
-    forwarButton.addEventListener('click',()=>{
+let currentMonthsIndex=9;
+function updateMonth(){
     
+    const monthsHeader=document.querySelector('.date h1');
+if(monthsHeader){
+    monthsHeader.textContent=months[currentMonthsIndex];
+                    }
+}
 
-        if(currentMonthsIndex<months.length -1){
-            currentMonthsIndex++;
 
-        }
-            else{
-                currentMonthsIndex=0;
-                currYear++;
-            }
-            updateMonth();
-            currMonth=currentMonthsIndex;
-            renderCalendar();
-            updateCalendarDays();
-            updateMouseOverEvent();
-            
-        });
+forwarButton.addEventListener('click',()=>{
 
-    backwarButton.addEventListener('click',()=>{
-        
 
-        if(currentMonthsIndex>0){
-            currentMonthsIndex--; 
-        }
+    if(currentMonthsIndex<months.length -1){
+        currentMonthsIndex++;
+
+    }
         else{
-            currentMonthsIndex=months.length -1;
-            currYear--;
+            currentMonthsIndex=0;
+            currYear++;
         }
-            updateMonth();
-            currMonth = currentMonthsIndex;
+        updateMonth();
+        currMonth=currentMonthsIndex;
         renderCalendar();
         updateCalendarDays();
-    updateMouseOverEvent();
-    
-
+        updateMouseOverEvent();
+        
+        
     });
 
-    daysList.appendChild(backwarButton); 
-    daysList.appendChild(forwarButton);
+backwarButton.addEventListener('click',()=>{
+    
 
-    const currentDate=document.querySelector('.date h1');
-    let date=new Date();
-    let currYear=date.getFullYear();
-    let currMonth=date.getMonth();
-    let currdays=date.getDate();
-    let previousMonth = null; 
-   
-         const renderCalendar=()=>{
-        
-                    if (currdays && currMonth === currentMonthsIndex) {
-                        currentDate.innerText = `${currMonth  +1   } ${months[currentMonthsIndex]} ${currYear}`;
-                        
-                        
-                    } else {
-                    currentDate.innerHTML = `${currdays} ${months[currMonth]} ${currYear}`;
-                    
-                    }
-                    
-                    
-                    
-                } 
+    if(currentMonthsIndex>0){
+        currentMonthsIndex--; 
+    }
+    else{
+        currentMonthsIndex=months.length -1;
+        currYear--;
+    }
+        updateMonth();
+        currMonth = currentMonthsIndex;
     renderCalendar();
-            function updateCalendarDays() {
-                const ulElement = document.querySelector('.days ul');
-                ulElement.innerHTML = ''; 
-            
-                const totalDays = new Date(currYear, currentMonthsIndex + 1, 0).getDate(); 
-            
-                for (let i = 1; i <= totalDays; i++) {
-                    const listItem = document.createElement('li');
-                    listItem.textContent = i;
-                    ulElement.appendChild(listItem);
-                }
-            }
-    
-    
     updateCalendarDays();
-    
+updateMouseOverEvent();
 
-    const listItems = document.querySelectorAll('.days ul li');
-    
-    
-    listItems.forEach(item => {
-        item.classList.remove('today');
-       
-    });
-    
-    
-        listItems[currdays - 1].classList.add('today');
+
+
+});
+
+daysList.appendChild(backwarButton); 
+daysList.appendChild(forwarButton);
+
+const currentDate=document.querySelector('.date h1');
+let date=new Date();
+let currYear=date.getFullYear();
+let currMonth=date.getMonth();
+let currdays=date.getDate();
+let previousMonth = null; 
+
+const today = new Date(); 
+
+const renderCalendar = () => {
+    if (currdays === today.getDate() && currMonth === today.getMonth() && currYear === today.getFullYear()) {
+        currentDate.textContent =`${currdays} ${months[currentMonthsIndex]} ${currYear}`;
+    } else {
+        currentDate.textContent = `${currentMonthsIndex + 1} ${months[currentMonthsIndex]} ${currYear}`;
+    }
+}
+
+                
+            
+renderCalendar();
+        function updateCalendarDays() {
+            const ulElement = document.querySelector('.days ul');
+            ulElement.innerHTML = ''; 
         
+            const totalDays = new Date(currYear, currentMonthsIndex + 1, 0).getDate(); 
+        
+            for (let i = 1; i <= totalDays; i++) {
+                const listItem = document.createElement('li');
+                listItem.textContent = i;
+                ulElement.appendChild(listItem);
+            }
+        }
+
+
+updateCalendarDays();
+
+
+const listItems = document.querySelectorAll('.days ul li');
+
+
+listItems.forEach(item => {
+    item.classList.remove('today');
+   
+});
+
+
+    listItems[currdays - 1].classList.add('today');
+    
+     
     const thismonth = document.querySelectorAll('.days');
 
     thismonth.forEach(monthDiv => {
         const monthListItems = monthDiv.querySelectorAll('ul li');
         monthListItems.forEach(item => {
-            item.addEventListener("mouseover", function() {
+            item.addEventListener("mouseover", function () {
             
                 item.style.backgroundColor = "red";
             });
 
-            item.addEventListener("mouseout", function() {
+            item.addEventListener("mouseout", function () {
                 
+                item.style.backgroundColor = "";
+            });
+        }); 
+    });
+
+function updateMouseOverEvent() {
+    const allMonths = document.querySelectorAll('.days ul');
+
+    allMonths.forEach(monthDiv => {
+        const monthListItems = monthDiv.querySelectorAll('li');
+        monthListItems.forEach(item => {
+            item.addEventListener("mouseover", function() {
+                item.style.backgroundColor = "red";
+            });
+
+            item.addEventListener("mouseout", function() {
                 item.style.backgroundColor = "";
             });
         });
     });
-    function updateMouseOverEvent() {
-        const allMonths = document.querySelectorAll('.days ul');
-
-        allMonths.forEach(monthDiv => {
-            const monthListItems = monthDiv.querySelectorAll('li');
-            monthListItems.forEach(item => {
-                item.addEventListener("mouseover", function() {
-                    item.style.backgroundColor = "red";
-                });
-
-                item.addEventListener("mouseout", function() {
-                    item.style.backgroundColor = "";
-                });
-            });
-        });
-    }
+}
