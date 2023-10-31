@@ -122,14 +122,17 @@ function getFirstDayOfMonth() {
         const emptyListItem = document.createElement('li');
         ulElement.appendChild(emptyListItem);
         }
-    
+        
         for (let i = 1; i <= totalDays; i++) {
         const listItem = document.createElement('li');
         listItem.textContent = i;
         ulElement.appendChild(listItem);
         }
       
-        
+        for (let i = 11; i > startingDay; i--) {
+            const emptyListItem = document.createElement('li');
+            ulElement.appendChild(emptyListItem);
+            }
     }
     
   updateCalendarDays();
