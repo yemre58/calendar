@@ -137,26 +137,6 @@ function getFirstDayOfMonth() {
     
   updateCalendarDays();
   
-  
-
-   
-  const thisMonth = document.querySelectorAll('.days');
-  
-  thisMonth.forEach(monthDiv => {
-    const monthListItems = monthDiv.querySelectorAll('ul li');
-    monthListItems.forEach(item => {
-      item.addEventListener('mouseover', function () {
-        item.style.backgroundColor = 'red';
-      });
-  
-      item.addEventListener('mouseout', function () {
-        item.style.backgroundColor = '';
-      });
-    });
-  });
-
-
-
 
 
 const listItems = document.querySelectorAll('.days ul li');
