@@ -30,7 +30,7 @@ const months= [
     ];
 
 
-let currentMonthsIndex=9;
+let currentMonthsIndex=10;
 function updateMonth(){
     
     const monthsHeader=document.querySelector('.date h1');
@@ -108,7 +108,7 @@ renderCalendar();
 
   
 function getFirstDayOfMonth() {
-    const firstDayOfMonth = new Date(currYear, currentMonthsIndex, 7);
+    const firstDayOfMonth = new Date(currYear, currentMonthsIndex, 7  );
     return firstDayOfMonth.getDay(); 
   }
   
@@ -141,7 +141,7 @@ function getFirstDayOfMonth() {
 
 const listItems = document.querySelectorAll('.days ul li');
 
-    listItems[currdays +5].classList.add('today');
+    listItems[currdays +1].classList.add('today');
     
      
     const thismonth = document.querySelectorAll('.days');
