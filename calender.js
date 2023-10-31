@@ -43,14 +43,14 @@ if(monthsHeader){
 forwarButton.addEventListener('click',()=>{
 
 
-    if(currentMonthsIndex<months.length -1){
-        currentMonthsIndex++;
+        if(currentMonthsIndex<months.length -1){
+            currentMonthsIndex++;
 
-    }
-        else{
-            currentMonthsIndex=0;
-            currYear++;
         }
+            else{
+                currentMonthsIndex=0;
+                currYear++;
+            }
         updateMonth();
         currMonth=currentMonthsIndex;
         renderCalendar();
@@ -88,9 +88,9 @@ let date=new Date();
 let currYear=date.getFullYear();
 let currMonth=date.getMonth();
 let currdays=date.getDate();
-let previousMonth = null; 
 
-const today = new Date(); 
+
+let today = new Date(); 
 
 const renderCalendar = () => {
     if (currdays === today.getDate() && currMonth === today.getMonth() && currYear === today.getFullYear()) {
@@ -103,33 +103,62 @@ const renderCalendar = () => {
                 
             
 renderCalendar();
-        function updateCalendarDays() {
-            const ulElement = document.querySelector('.days ul');
-            ulElement.innerHTML = ''; 
-        
-            const totalDays = new Date(currYear, currentMonthsIndex + 1, 0).getDate(); 
-        
-            for (let i = 1; i <= totalDays; i++) {
-                const listItem = document.createElement('li');
-                listItem.textContent = i;
-                ulElement.appendChild(listItem);
-            }
+
+
+
+  
+function getFirstDayOfMonth() {
+    const firstDayOfMonth = new Date(currYear, currentMonthsIndex, 7);
+    return firstDayOfMonth.getDay(); 
+  }
+  
+    function updateCalendarDays() {
+        const ulElement = document.querySelector('.days ul');
+        ulElement.innerHTML = '';
+        const totalDays = new Date(currYear, currentMonthsIndex + 1, 0).getDate();
+        const startingDay = getFirstDayOfMonth();
+    
+        for (let i = 0; i < startingDay; i++) {
+        const emptyListItem = document.createElement('li');
+        ulElement.appendChild(emptyListItem);
         }
+    
+        for (let i = 1; i <= totalDays; i++) {
+        const listItem = document.createElement('li');
+        listItem.textContent = i;
+        ulElement.appendChild(listItem);
+        }
+      
+        
+    }
+    
+  updateCalendarDays();
+  
+  
+
+   
+  const thisMonth = document.querySelectorAll('.days');
+  
+  thisMonth.forEach(monthDiv => {
+    const monthListItems = monthDiv.querySelectorAll('ul li');
+    monthListItems.forEach(item => {
+      item.addEventListener('mouseover', function () {
+        item.style.backgroundColor = 'red';
+      });
+  
+      item.addEventListener('mouseout', function () {
+        item.style.backgroundColor = '';
+      });
+    });
+  });
 
 
-updateCalendarDays();
+
 
 
 const listItems = document.querySelectorAll('.days ul li');
 
-
-listItems.forEach(item => {
-    item.classList.remove('today');
-   
-});
-
-
-    listItems[currdays - 1].classList.add('today');
+    listItems[currdays +5].classList.add('today');
     
      
     const thismonth = document.querySelectorAll('.days');
@@ -164,4 +193,5 @@ function updateMouseOverEvent() {
             });
         });
     });
+    
 }
